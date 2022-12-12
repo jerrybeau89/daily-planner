@@ -2,30 +2,21 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 
-let weekDay = dayjs().format('dddd MMM Do');
+let weekDay = dayjs().format('dddd MMM D');
 let allHourStyles = $('[hour-style]');
 let currentHourStyle;
+let allSavBtns = $('.saveBtn');
+let fieldID;
+let fieldContent;
 
 //$(function () {
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
-  //
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-
+  
   function hourStyle() {
     for (let i = 0; i < allHourStyles.length; i++) {
       currentHourStyle = parseInt(allHourStyles[i].dataset.hour);
-      if (currentHourStyle < dayjs.format("HH")) {
+      if (currentHourStyle < dayjs().format("HH")) {
         allHourStyles[i].classList.add('past');
-      } else if (currentHourStyle > dayjs.format("HH")) {
+      } else if (currentHourStyle > dayjs().format("HH")) {
         allHourStyles[i].classList.add("future");
       } else {
         allHourStyles[i].classList.add("present");
@@ -37,6 +28,18 @@ let currentHourStyle;
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   //
+  function findEvents() { //gets stored data and puts it on the page
+    $('textarea').each(function () {
+        fieldID = this.id;
+        $(this).val(JSON.parse(localStorage.getItem(this.id)));
+    });
+}
+
+function saveData() { //saves entered data to local storage
+    fieldID = this.id + "field";
+    fieldContent = $('#' + fieldID).val();
+    localStorage.setItem(fieldID, JSON.stringify(fieldContent));
+}
   // TODO: Add code to display the current date in the header of the page.
 
   function setClock () {
@@ -49,4 +52,7 @@ let currentHourStyle;
 
   hourStyle();
   setInterval(hourStyle, 1000)
+
+  findEvents();
+  $('#9, #10, #11, #12, #13, #14, #15, #16, #17').click(saveData);
 //});
