@@ -25,6 +25,8 @@ This project does not need any installation to run. Opening the webpage will run
 
 Click on a time frame, add your task you wish to store and click the save icon to the right. This will store the data. You can then refresh the page and see that the data will remain. Please see the images below for reference. 
 
+https://jerrybeau89.github.io/daily-planner/
+
 
 ![alt text](assets/images/work-day-start.png)
 ![alt text](assets/images/work-day-end.png)
