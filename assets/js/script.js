@@ -2,7 +2,7 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 
-let weekDay = dayjs().format('dddd MMM D');
+let weekDay = dayjs().format('dddd, MMMM D');
 let allHourStyles = $('[data-hour]');
 let currentHourStyle;
 let allSavBtns = $('.saveBtn');
